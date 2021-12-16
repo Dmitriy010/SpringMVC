@@ -1,0 +1,33 @@
+<div th:fragment="navbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ms-3 me-3" href="/">WebApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/main">Messages</a>
+                </li>
+                <li class="nav-item">
+
+                    <a class="nav-link active" aria-current="page"  sec:authorize ="hasAuthority('ADMIN')"  href="/user">User list</a>
+                </li>
+                <li class="nav-item">
+
+                    <a class="nav-link active" aria-current="page"  sec:authorize ="hasAuthority('USER')"  href="/user/profile">Profile</a>
+                </li>
+            </ul>
+
+            <div class="navbar-text ms-3 me-3" th:text="${#authentication.name}"></div>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn btn-primary ms-3 me-3"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            </form>
+
+        </div>
+    </nav>
+</div>

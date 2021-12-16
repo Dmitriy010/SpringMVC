@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <header th:insert="parts/head :: head" ></header>
+</head>
+<body>
+<script th:insert="parts/script :: script" ></script>
+<header th:insert="parts/navbar :: navbar" ></header>
+<div>
+    <h1>User editor!</h1>
+    <form action="/user" method="post">
+        <input type="text" name="username" th:value="${user.getUsername()}"/> <br>
+        <div th:each="role:${roles}">
+            <input type="checkbox" th:name="${role}" th:checked="${#lists.contains(user.getRoles(),role)} ? 'checked'">
+            <label th:text="${role}"/>
+            </input>
+        </div>
+        <br>
+        <input type="hidden" name="id" th:value="${user.getId()}"/>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button type="submit"> Update user </button>
+    </form>
+
+
+    <a href="/main">Main page</a>
+</div>
+</body>
+</html>

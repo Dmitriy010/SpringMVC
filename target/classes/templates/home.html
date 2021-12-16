@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <header th:insert="parts/head :: head" ></header>
+</head>
+<body>
+<script th:insert="parts/script :: script" ></script>
+<header th:insert="parts/navbar :: navbar" ></header>
+<div class="container mt-5 mb-5">
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+</div>
+<div class="container mt-2 mb-2">
+    <a th:href="@{/login}" class="btn btn-warning">Login page</a>
+</div>
+<div class="container mt-2 mb-2">
+    <a th:href="@{/registration}" class="btn btn-warning">Add new user</a>
+</div>
+</body>
+</html>

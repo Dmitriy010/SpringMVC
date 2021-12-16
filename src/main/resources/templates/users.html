@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <header th:insert="parts/head :: head" ></header>
+</head>
+<body>
+<script th:insert="parts/script :: script" ></script>
+<header th:insert="parts/navbar :: navbar" ></header>
+<div>
+    <h1>Users list!</h1>
+    <div th:each="el:${users}" class="alert alert-info mt-2">
+        <p th:text="${el.getUsername()}"/>
+        <p th:text="${el.getRoles()}"/>
+        <a th:href="@{/user/{id}(id=${el.getId()})}"> Edit user</a>
+    </div>
+</div>
+</body>
+</html>
